@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="">
+<head>
+    <meta charset="UTF-8">
+    <title>DashBoard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.8" />
+    <link href="index.css" rel="stylesheet">
+    <link href="./github-card.css" rel="stylesheet" type="text/css">
+    <link href="https://lib.baomitu.com/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://lib.baomitu.com/font-awesome/6.2.1/css/all.css" rel="stylesheet">
+</head>
+<body>
+<div class="app-container">
+    <div class="app-header">
+        <div class="app-header-left">
+            <span class="app-icon"></span>
+            <p class="app-name">Zh-Website</p>
+            <div class="search-wrapper">
+                <label>
+                    <input class="search-input" type="text" placeholder="Search">
+                </label>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search" viewBox="0 0 24 24">
+                    <defs></defs>
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="M21 21l-4.35-4.35"></path>
+                </svg>
+            </div>
+        </div>
+        <div class="app-header-right">
+            <button class="mode-switch" title="Switch Theme">
+                <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
+                    <defs></defs>
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                </svg>
+            </button>
+            <button class="notification-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg>
+            </button>
+            <button class="profile-btn">
+                <img src="./zmh-program.png"  alt=""/>
+                <span>zmh-program</span>
+            </button>
+        </div>
+        <button class="messages-btn">
+            <i class='bx bxs-bar-chart-alt-2'></i>
+        </button>
+    </div>
+    <div class="app-content">
+        <div class="app-sidebar">
+            <a href="" class="app-sidebar-link active">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" /></svg>
+            </a>
+            <a href="" class="app-sidebar-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="link-icon feather feather-pie-chart" viewBox="0 0 24 24">
+                    <defs />
+                    <path d="M21.21 15.89A10 10 0 118 2.83M22 12A10 10 0 0012 2v10z" />
+                </svg>
+            </a>
+            <a href="" class="app-sidebar-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" /></svg>
+            </a>
+            <a href="" class="app-sidebar-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="link-icon feather feather-settings" viewBox="0 0 24 24">
+                    <defs />
+                    <circle cx="12" cy="12" r="3" />
+                    <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+                </svg>
+            </a>
+        </div>
+        <div class="projects-section">
+            <div class="projects-section-header">
+                <p>Server Data</p>
+                <p class="right"></p>
+            </div>
+            <div class="projects-section-line">
+                <div class="projects-status">
+                    <div class="item-status">
+                        <span class="status-number">2</span>
+                        <span class="status-type">vCPU</span>
+                    </div>
+                    <div class="item-status">
+                        <span class="status-number">4 G</span>
+                        <span class="status-type">RAM</span>
+                    </div>
+                    <div class="item-status">
+                        <span class="status-number">6 Mbps</span>
+                        <span class="status-type">Peak Bandwidth</span>
+                    </div>
+                </div>
+                <div class="view-actions">
+                    <button class="view-btn list-view" title="List View">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
+                            <line x1="8" y1="6" x2="21" y2="6" />
+                            <line x1="8" y1="12" x2="21" y2="12" />
+                            <line x1="8" y1="18" x2="21" y2="18" />
+                            <line x1="3" y1="6" x2="3.01" y2="6" />
+                            <line x1="3" y1="12" x2="3.01" y2="12" />
+                            <line x1="3" y1="18" x2="3.01" y2="18" /></svg>
+                    </button>
+                    <button class="view-btn grid-view active" title="Grid View">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid">
+                            <rect x="3" y="3" width="7" height="7" />
+                            <rect x="14" y="3" width="7" height="7" />
+                            <rect x="14" y="14" width="7" height="7" />
+                            <rect x="3" y="14" width="7" height="7" /></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="project-boxes without-scrollbar jsGridView">
+                <div class="project-box-wrapper" id="cpu">
+                    <div class="project-box" style="background-color: #fee4cb;">
+                        <div class="project-box-header">
+                            <span>Server CPU Monitor</span>
+                            <div class="more-wrapper"><button class="project-btn-more"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1" /><circle cx="12" cy="5" r="1" /><circle cx="12" cy="19" r="1" /></svg></button></div>
+                        </div>
+                        <div class="project-box-content-header">
+                            <p class="box-content-header"><i class="fa-solid fa-microchip"></i> CPU</p>
+                            <p class="box-content-subheader">Intel(R) Xeon(R) Gold 6133 CPU @ 2.50 GHz * 1</p>
+                        </div>
+                        <div class="box-progress-wrapper">
+                            <div class="box-progress-bar hidden"><span class="box-progress" style="width: 40%; background-color: unset;"></span></div>
+                            <div class="percent"><svg><circle class="percent-chart" stroke="transparent" cx="70" cy="70" r="70" shape-rendering="geometricPrecision"></circle></svg><div class="number"><h2><span class="percent-value"></span><span>%</span></h2></div></div>
+                            <p class="box-progress-percentage">0 %</p>
+                        </div>
+                        <div class="project-box-footer">
+                            <div class="participants"></div>
+                            <div class="footer-msg" style="color: #ff942e;">
+                                2.50 GHz
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-box-wrapper" id="ram">
+                    <div class="project-box" style="background-color: #e9e7fd;">
+                        <div class="project-box-header">
+                            <span>Server RAM Monitor</span>
+                            <div class="more-wrapper"><button class="project-btn-more"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1" /><circle cx="12" cy="5" r="1" /><circle cx="12" cy="19" r="1" /></svg></button></div>
+                        </div>
+                        <div class="project-box-content-header">
+                            <p class="box-content-header"><i class="fa-solid fa-memory"></i> RAM</p>
+                            <p class="box-content-subheader">DDR4 4G * 1 (3694 MB)</p>
+                        </div>
+                        <div class="box-progress-wrapper">
+                            <div class="box-progress-bar hidden"><span class="box-progress" style="width: 40%; background-color: unset;"></span></div>
+                            <div class="percent"><svg><circle class="percent-chart" stroke="transparent" cx="70" cy="70" r="70" shape-rendering="geometricPrecision"></circle></svg><div class="number"><h2><span class="percent-value"></span><span>%</span></h2></div></div>
+                            <p class="box-progress-percentage">0 %</p>
+                        </div>
+                        <div class="project-box-footer">
+                            <div class="participants"></div>
+                            <div class="footer-msg" style="color: #4f3ff0;">
+                                3694 MB
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-box-wrapper" id="rom">
+                    <div class="project-box">
+                        <div class="project-box-header">
+                            <span>Server ROM Usage</span>
+                            <div class="more-wrapper"><button class="project-btn-more"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1" /><circle cx="12" cy="5" r="1" /><circle cx="12" cy="19" r="1" /></svg></button></div>
+                        </div>
+                        <div class="project-box-content-header">
+                            <p class="box-content-header"><i class="fa-solid fa-hard-drive"></i> ROM</p>
+                            <p class="box-content-subheader">SSD 60G * 1 (59G)</p>
+                        </div>
+                        <div class="box-progress-wrapper">
+                            <div class="box-progress-bar hidden"><span class="box-progress" style="width: 40%; background-color: unset;"></span></div>
+                            <div class="percent"><svg><circle class="percent-chart" stroke="transparent" cx="70" cy="70" r="70" shape-rendering="geometricPrecision"></circle></svg><div class="number"><h2><span class="percent-value"></span><span>%</span></h2></div></div>
+                            <p class="box-progress-percentage">0 %</p>
+                        </div>
+                        <div class="project-box-footer">
+                            <div class="participants"></div>
+                            <div class="footer-msg" style="color: #096c86;">
+                                59 G
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-box-wrapper" id="ws-delay">
+                    <div class="project-box" style="background-color: #ffd3e2;">
+                        <div class="project-box-header">
+                            <span>Server Delay Analysis</span>
+                            <div class="more-wrapper">
+                                <button class="project-btn-more">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                                        <circle cx="12" cy="12" r="1" />
+                                        <circle cx="12" cy="5" r="1" />
+                                        <circle cx="12" cy="19" r="1" /></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="project-box-content-header">
+                            <p class="box-content-header"><i class="fa-solid fa-magnifying-glass-chart"></i> WebSocket Delay Analysis</p>
+                            <p class="box-content-subheader">wss delay</p>
+                        </div>
+                        <div class="box-progress-wrapper">
+                            <p class="box-progress-header">Delay</p>
+                            <div class="box-progress-bar">
+                                <span class="box-progress" style="width: 20%; background-color: #df3670"></span>
+                            </div>
+                            <p class="box-progress-percentage">0 ms</p>
+                        </div>
+                        <div class="project-box-footer">
+                            <div class="participants"></div>
+                            <div class="footer-msg" style="color: #df3670;">
+                                good
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-box-wrapper">
+                    <div class="project-box" style="background-color: #c8f7dc;">
+                        <div class="project-box-header">
+                            <span>December 10, 2020</span>
+                            <div class="more-wrapper">
+                                <button class="project-btn-more">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                                        <circle cx="12" cy="12" r="1" />
+                                        <circle cx="12" cy="5" r="1" />
+                                        <circle cx="12" cy="19" r="1" /></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="project-box-content-header">
+                            <p class="box-content-header">Data Analysis</p>
+                            <p class="box-content-subheader">Prototyping</p>
+                        </div>
+                        <div class="box-progress-wrapper">
+                            <p class="box-progress-header">Progress</p>
+                            <div class="box-progress-bar">
+                                <span class="box-progress" style="width: 60%; background-color: #34c471"></span>
+                            </div>
+                            <p class="box-progress-percentage">60%</p>
+                        </div>
+                        <div class="project-box-footer">
+                            <div class="participants"></div>
+                            <div class="footer-msg" style="color: #34c471;">
+                                2 Days Left
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-box-wrapper">
+                    <div class="project-box" style="background-color: #d5deff;">
+                        <div class="project-box-header">
+                            <span>December 10, 2020</span>
+                            <div class="more-wrapper">
+                                <button class="project-btn-more">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+                                        <circle cx="12" cy="12" r="1" />
+                                        <circle cx="12" cy="5" r="1" />
+                                        <circle cx="12" cy="19" r="1" /></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="project-box-content-header">
+                            <p class="box-content-header">Web Designing</p>
+                            <p class="box-content-subheader">Prototyping</p>
+                        </div>
+                        <div class="box-progress-wrapper">
+                            <p class="box-progress-header">Progress</p>
+                            <div class="box-progress-bar">
+                                <span class="box-progress" style="width: 40%; background-color: #4067f9"></span>
+                            </div>
+                            <p class="box-progress-percentage">40%</p>
+                        </div>
+                        <div class="project-box-footer">
+                            <div class="participants"></div>
+                            <div class="footer-msg" style="color: #4067f9;">
+                                2 Days Left
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="messages-section without-scrollbar">
+            <button class="messages-close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="15" y1="9" x2="9" y2="15" />
+                    <line x1="9" y1="9" x2="15" y2="15" /></svg>
+            </button>
+            <div class="projects-section-header">
+                <p>Website Data</p>
+            </div>
+            <div class="projects-section-line">
+                <div class="projects-status" style="transform: translateX(15%);gap: 20px;" onclick="window.location.href='https://github.com/zmh-program/Zh-Website/'">
+                    <div class="item-status">
+                        <span class="status-number" id="star">Unknown</span>
+                        <span class="status-type">Stars</span>
+                    </div>
+                    <div class="item-status">
+                        <span class="status-number" id="fork">Unknown</span>
+                        <span class="status-type">Forks</span>
+                    </div>
+                    <div class="item-status">
+                        <span class="status-number" id="size">Unknown</span>
+                        <span class="status-type">Repo Size</span>
+                    </div>
+                </div>
+            </div>
+            <div class="messages">
+                <div class="message-box">
+                    <i class="fa-solid fa-chart-area"></i>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <div class="name">Dynamic Request</div>
+                            <div class="star-checkbox">
+                                <input type="checkbox" id="star-2">
+                                <label for="star-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="area-chart message-line" id="req-chart-container"></div>
+                        <p class="message-line right" style="font-size: 20px;">
+                            0 + 0
+                        </p>
+                        <p class="message-line right" id="dynamic-offset" style="font-size: 18px;">
+                            + 0
+                        </p>
+                    </div>
+                </div>
+                <div class="message-box">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <div class="name">Site Requests (7 Days)</div>
+                            <div class="star-checkbox">
+                                <input type="checkbox" id="star-3">
+                                <label for="star-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                                </label>
+                            </div>
+                        </div>
+                        <p class="message-line">
+
+                        </p>
+                        <div class="area-chart message-line" id="site-request-chart"></div>
+                        <p class="message-line right">
+                            7 Days of Site Requests
+                        </p>
+                    </div>
+                </div>
+                <div class="message-box">
+                    <i class="fa-solid fa-user-group"></i>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <div class="name">Users</div>
+                        </div>
+                        <p class="message-line">
+                            I am really impressed! Can't wait to see the final result.
+                        </p>
+                        <p class="message-line right">
+                            Registered Users
+                        </p>
+                    </div>
+                </div>
+                <div class="message-box">
+                    <i class='bx bx-git-repo-forked'></i>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <div class="name">Forks</div>
+                            <div class="star-checkbox">
+                                <input type="checkbox" id="star-4">
+                                <label for="star-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                                </label>
+                            </div>
+                        </div>
+                        <p class="message-line"></p>
+                        <div class="github-card" id="fork-list" style="transform: translateX(-20px);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="./dynamic-chart.js"></script>
+<script src="./github-query.js"></script>
+<script src="index.js"></script>
+<script src="./progressbar.js"></script>
+<script src="static-chart.js"></script>
+<script>
+    updateSiteRequestChart([12000, 13200, 10100, 13400, 9000, 23000, 21000]);
+    setInterval(
+        function (){
+            updateDynamicRequestChart(Math.round(Math.random() * 100) + 100);
+        },
+        500,
+    );
+    setInterval(function (){roundProgressUpdate(cpu_progress_dom, (Math.random() * 100).toFixed(1));}, 1000);
+    setInterval(function (){roundProgressUpdate(ram_progress_dom, (Math.random() * 100).toFixed(1));}, 1000);
+    setInterval(function (){roundProgressUpdate(rom_progress_dom, (Math.random() * 100).toFixed(1));}, 1000);
+    setInterval(function (){wsProgressUpdate((Math.random() * 2000).toFixed(1));}, 1000);
+    initGithubRepositoryData("django", "django");
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>progressbar</title>
+    <link rel="stylesheet" href="/progress.css">
+</head>
+<body>
+<section>
+    <div class="container">
+        <div class="chart-card" id="cpu">
+            <div class="box">
+                <span>CPU</span>
+                <div><div class="percent"><svg><circle class="percent-chart" stroke="transparent" cx="70" cy="70" r="70" shape-rendering="geometricPrecision"></circle></svg><div class="number"><h2><span class="percent-value"></span><span>%</span></h2></div></div></div>
+            </div>
+        </div>
+        <div class="chart-card" id="ram">
+            <div class="box">
+                <span>RAM</span>
+                <div><div class="percent"><svg><circle class="percent-chart" stroke="transparent" cx="70" cy="70" r="70" shape-rendering="geometricPrecision"></circle></svg><div class="number"><h2><span class="percent-value"></span><span>%</span></h2></div></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    let cpu_progress_dom = document.getElementById("cpu");
+    let ram_progress_dom = document.getElementById("ram");
+    function progressUpdate(dom, percent) {
+        let color, _chart = dom.getElementsByClassName("percent-chart")[0];
+        switch (true) {
+            default:
+                color = "rgb(80,223,41)";break;
+            case percent >= 80:
+                color = "rgb(240, 40, 40)";break;
+            case percent >= 60:
+                color = "rgb(240,100,40)";break;
+            case percent >= 40:
+                color = "rgb(247,223,30)";break;
+        }
+        dom.getElementsByClassName("percent-value")[0].innerText = percent;
+        _chart.style.stroke = color;
+        _chart.style.strokeDashoffset = `calc(440px - (440px * ${percent} / 100))`;
+    }
+    setInterval(function (){progressUpdate(cpu_progress_dom, (Math.random() * 100).toFixed(0));}, 1000)
+    setInterval(function (){progressUpdate(ram_progress_dom, (Math.random() * 100).toFixed(0));}, 1000)
+</script>
+</body>
+</html>

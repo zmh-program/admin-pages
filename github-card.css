@@ -1,0 +1,148 @@
+.github-card{
+    background-color: black;
+    border-radius: 5px;
+    padding: 5px 10px 5px 5px;
+}
+
+.Box {
+    background-color: #0d1117;
+    border-color: #30363d;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 6px;
+    padding: 5px;
+}
+* {
+    box-sizing: border-box;
+}
+
+.text-bold {
+    font-weight: 600 !important;
+}
+.lh-condensed {
+    line-height: 1.25 !important;
+}
+.f4 {
+    font-size: 16px !important;
+}
+
+.color-fg-default {
+    color: rgb(201, 209, 217) !important;
+}
+* {
+    box-sizing: border-box;
+}
+.mr-3 {
+    margin-right: 16px !important;
+}
+.d-inline-block {
+    display: inline-block !important;
+}
+.wb-break-all {
+    word-break: break-all !important;
+}
+.no-underline {
+    text-decoration: none !important;
+}
+.text-bold {
+    font-weight: 600 !important;
+}
+.Link--primary {
+    color: rgb(201, 209, 217) !important;
+}
+.Link--muted {
+    color: rgb(139, 148, 158) !important;
+}
+.dashboard-break-word {
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    word-break: break-word;
+}
+.dashboard-break-word {
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    word-break: break-word;
+}
+.mt-1 {
+    margin-top: 4px !important;
+}
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+.color-fg-muted {
+    color: rgb(139, 148, 158) !important;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+* {
+    box-sizing: border-box;
+}
+.dashboard-break-word {
+    hyphens: auto;
+    word-break: break-word;
+}
+
+.f6 {
+    font-size: 12px !important;
+}
+.mt-2 {
+    margin-top: 8px !important;
+}
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+.repo-language-color {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+}
+.ml-0 {
+    margin-left: 0 !important;
+}
+.mr-1 {
+    margin-right: 4px !important;
+}
+.mr-2 {
+    margin-right: 8px !important;
+}
+.octicon {
+    display: inline-block;
+    overflow: visible !important;
+    vertical-align: text-bottom;
+    fill: currentColor;
+}
+.octicon {
+    vertical-align: text-bottom;
+}
+a {
+    text-decoration: none;
+}
+.d-flex {
+    display: flex !important;
+}
+.py-3 {
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+}
+.flex-items-baseline {
+    align-items: baseline !important;
+}
+.color-border-muted {
+    border-color: #21262d !important;
+}
+.border-bottom {
+    border-bottom: 1px solid #21262d !important;
+}
+.width-full {
+    width: 100% !important;
+}
+.flex-column {
+    flex-direction: column !important;
+}

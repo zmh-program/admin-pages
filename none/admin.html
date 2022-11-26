@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Consolas, Monospace, monospace;
+        }
+        body{
+            background-image: linear-gradient(
+                    to right top,
+                    #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4,
+                    #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1
+            );
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            grid-column-gap: 10px;
+            grid-row-gap: 10px;
+        }
+        html, body{
+            width: 100%;
+            height: 100%;
+        }
+        .card-container{
+            border-radius: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px 1px #0000000d;
+            transition: all .3s;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-container .title{
+            font-weight: bold;
+            font-size: xx-large;
+            text-align: center;
+        }
+        .card-container .area-chart {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        .card-container .percent-chart {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .gradient-font{
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .dynamic-req {
+            background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
+        }
+        .memory-usage{
+            background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%);
+        }
+        .shields {
+            height: 20px;
+            object-fit: contain;
+        }
+        .github-card{
+            grid-area: 1 / 5 / 4 / 6;
+            width: max-content !important;
+            line-height: 28px;
+        }
+        .github-card a{
+            text-decoration: none !important;
+            font-size: 26px;
+        }
+        .github-card a .oct{
+            position: relative;
+            top: 3px;
+        }
+        .github-card a .github,
+        .github-card a .github:hover,
+        .github-card a .github:visited,
+        .github-card a .github:active{
+            color: #000;
+        }
+    </style>
+<body>
+    <div class="card-container" style="grid-area: 1 / 1 / 4 / 5;">
+        <span class="title gradient-font dynamic-req">Dynamic Request Chart</span>
+        <div class="area-chart" id="req-chart-container"></div>
+    </div>
+    <div class="card-container" style="grid-area: 4 / 1 / 6 / 3;">
+        <span class="title gradient-font memory-usage">Server Memory Usage</span>
+        <div class="percent-chart" id="mem-chart-container"></div>
+    </div>
+    <div class="card-container" style="grid-area: 4 / 3 / 6 / 5;">
+        <span class="title gradient-font memory-usage">Server CPU Usage</span>
+        <div class="percent-chart" id="cpu-chart-container"></div>
+    </div>
+    <div class="card-container github-card">
+        <a href="https://github.com/zmh-program/Zh-Website/">
+            <svg height="26" aria-hidden="true" viewBox="0 0 16 16" width="26" data-view-component="true" class="oct"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+            <span class="github">Github</span>
+        </a>
+
+        <img class="shields" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/zmh-program/Zh-Website?style=plastic">
+        <img class="shields" alt="GitHub forks" src="https://img.shields.io/github/forks/zmh-program/Zh-Website?style=plastic">
+        <img class="shields" alt="GitHub repo size" src="https://img.shields.io/github/repo-size/zmh-program/Zh-Website?style=plastic">
+    </div>
+
+    <script src="https://fastly.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        // Common Function
+        let fileUnits = Array("B", "KiB", "MiB", "GiB");
+        let fileUnitStride = 1024;
+
+        function toLocalTime() {
+            let date = new Date()
+            return `${date.getMinutes()}:${date.getSeconds()}`
+        }
+
+        function toFileSize(size, idx=0){
+            while (size > fileUnitStride && idx < fileUnits.length - 1){
+                size /= fileUnitStride
+                idx ++;
+            }
+            return `${size.toFixed(2)} ${fileUnits[idx]}`
+        }
+    </script>
+    <script>
+        // Dynamic Request
+
+        let req_dom = document.getElementById('req-chart-container');
+        const reqChart = echarts.init(req_dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+        });
+        let data = [], stamps = [];
+        for (let i = 0; i < 20; i++) {
+            data.push(Math.round(Math.random() * 100))
+            stamps.push(toLocalTime())
+        }
+        let reqOption;
+
+        reqOption = {
+            color: ['#80FFA5', '#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#6a7985',
+                    }
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: stamps
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    name: 'Requests',
+                    type: 'line',
+                    stack: 'Total',
+                    smooth: true,
+                    lineStyle: {
+                        width: 0
+                    },
+                    showSymbol: false,
+                    areaStyle: {
+                        opacity: 0.8,
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                            {
+                                offset: 0,
+                                color: 'rgb(1, 191, 236, 1)'
+                            },
+                            {
+                                offset: 1,
+                                color: 'rgb(128, 255, 165, .1)'
+                            }
+                        ])
+                    },
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    itemStyle : { normal: {label : {show: true}}},
+                    data: data
+                }
+            ]
+        };
+
+        if (reqOption && typeof reqOption === 'object') {
+            reqChart.setOption(reqOption);
+            setInterval(
+                function (){
+                    data.push(Math.round(Math.random() * 10) + 100);
+                    stamps.push(toLocalTime())
+                    reqChart.setOption({
+                        series: [{
+                            data: data
+                        }],
+                        xAxis: [
+                            {
+                                data: stamps
+                            }
+                        ]
+                    });
+                },
+                500,
+            )
+        }
+
+        window.addEventListener('resize', reqChart.resize);
+    </script>
+    <script>
+        let memDom = document.getElementById('mem-chart-container');
+        const memChart = echarts.init(memDom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+        });
+        let memOption;
+
+        const _panelImageURL = 'https://echarts.apache.org/examples/data/asset/img/custom-gauge-panel.png';
+        const _animationDuration = 1000;
+        const _animationDurationUpdate = 1000;
+        const _animationEasingUpdate = 'quarticInOut';
+        const _valOnRadianMax = 200;
+        const _outerRadius = 150;
+        const _innerRadius = 120;
+        const _pointerInnerRadius = 10;
+        const _insidePanelRadius = 90;
+
+        function renderItem(params, api) {
+            const valOnRadian = api.value(1);
+            const coords = api.coord([api.value(0), valOnRadian]);
+            const polarEndRadian = coords[3];
+            const imageStyle = {
+                image: _panelImageURL,
+                x: params.coordSys.cx - _outerRadius,
+                y: params.coordSys.cy - _outerRadius,
+                width: _outerRadius * 2,
+                height: _outerRadius * 2
+            };
+            return {
+                type: 'group',
+                children: [
+                    {
+                        type: 'image',
+                        style: imageStyle,
+                        clipPath: {
+                            type: 'sector',
+                            shape: {
+                                cx: params.coordSys.cx,
+                                cy: params.coordSys.cy,
+                                r: _outerRadius,
+                                r0: _innerRadius,
+                                startAngle: 0,
+                                endAngle: -polarEndRadian,
+                                transition: 'endAngle',
+                                enterFrom: { endAngle: 0 }
+                            }
+                        }
+                    },
+                    {
+                        type: 'image',
+                        style: imageStyle,
+                        clipPath: {
+                            type: 'polygon',
+                            shape: {
+                                points: makePointerPoints(params, polarEndRadian)
+                            },
+                            extra: {
+                                polarEndRadian: polarEndRadian,
+                                transition: 'polarEndRadian',
+                                enterFrom: { polarEndRadian: 0 }
+                            },
+                            during: function (apiDuring) {
+                                apiDuring.setShape(
+                                    'points',
+                                    makePointerPoints(params, apiDuring.getExtra('polarEndRadian'))
+                                );
+                            }
+                        }
+                    },
+                    {
+                        type: 'circle',
+                        shape: {
+                            cx: params.coordSys.cx,
+                            cy: params.coordSys.cy,
+                            r: _insidePanelRadius
+                        },
+                        style: {
+                            fill: '#fff',
+                            shadowBlur: 25,
+                            shadowOffsetX: 0,
+                            shadowOffsetY: 0,
+                            shadowColor: 'rgba(76,107,167,0.4)'
+                        }
+                    },
+                    {
+                        type: 'text',
+                        extra: {
+                            valOnRadian: valOnRadian,
+                            transition: 'valOnRadian',
+                            enterFrom: { valOnRadian: 0 }
+                        },
+                        style: {
+                            text: makeText(valOnRadian),
+                            fontSize: 50,
+                            fontWeight: 700,
+                            x: params.coordSys.cx,
+                            y: params.coordSys.cy,
+                            fill: 'rgb(0,50,190)',
+                            align: 'center',
+                            verticalAlign: 'middle',
+                            enterFrom: { opacity: 0 }
+                        },
+                        during: function (apiDuring) {
+                            apiDuring.setStyle(
+                                'text',
+                                makeText(apiDuring.getExtra('valOnRadian'))
+                            );
+                        }
+                    }
+                ]
+            };
+        }
+        function convertToPolarPoint(renderItemParams, radius, radian) {
+            return [
+                Math.cos(radian) * radius + renderItemParams.coordSys.cx,
+                -Math.sin(radian) * radius + renderItemParams.coordSys.cy
+            ];
+        }
+        function makePointerPoints(renderItemParams, polarEndRadian) {
+            return [
+                convertToPolarPoint(renderItemParams, _outerRadius, polarEndRadian),
+                convertToPolarPoint(
+                    renderItemParams,
+                    _outerRadius,
+                    polarEndRadian + Math.PI * 0.03
+                ),
+                convertToPolarPoint(renderItemParams, _pointerInnerRadius, polarEndRadian)
+            ];
+        }
+        function makeText(valOnRadian) {
+            // Validate additive animation calc.
+            if (valOnRadian < -10) {
+                alert('illegal during val: ' + valOnRadian);
+            }
+            return ((valOnRadian / _valOnRadianMax) * 100).toFixed(0) + '%';
+        }
+        memOption = {
+            animationEasing: _animationEasingUpdate,
+            animationDuration: _animationDuration,
+            animationDurationUpdate: _animationDurationUpdate,
+            animationEasingUpdate: _animationEasingUpdate,
+            dataset: {
+                source: [[1, 156]]
+            },
+            tooltip: {},
+            angleAxis: {
+                type: 'value',
+                startAngle: 0,
+                show: false,
+                min: 0,
+                max: _valOnRadianMax
+            },
+            radiusAxis: {
+                type: 'value',
+                show: false
+            },
+            polar: {},
+            series: [
+                {
+                    type: 'custom',
+                    coordinateSystem: 'polar',
+                    renderItem: renderItem
+                }
+            ]
+        };
+        setInterval(function () {
+            var nextSource = [[1, Math.round(Math.random() * _valOnRadianMax)]];
+            memChart.setOption({
+                dataset: {
+                    source: nextSource
+                }
+            });
+        }, 1000);
+
+        if (memOption && typeof memOption === 'object') {
+            memChart.setOption(memOption);
+        }
+
+        window.addEventListener('resize', memChart.resize);
+    </script>
+    <script>
+        let memDom = document.getElementById('mem-chart-container');
+        const memChart = echarts.init(memDom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+        });
+        let memOption;
+
+        const _panelImageURL = 'https://echarts.apache.org/examples/data/asset/img/custom-gauge-panel.png';
+        const _animationDuration = 1000;
+        const _animationDurationUpdate = 1000;
+        const _animationEasingUpdate = 'quarticInOut';
+        const _valOnRadianMax = 200;
+        const _outerRadius = 150;
+        const _innerRadius = 120;
+        const _pointerInnerRadius = 10;
+        const _insidePanelRadius = 90;
+
+        function renderItem(params, api) {
+            const valOnRadian = api.value(1);
+            const coords = api.coord([api.value(0), valOnRadian]);
+            const polarEndRadian = coords[3];
+            const imageStyle = {
+                image: _panelImageURL,
+                x: params.coordSys.cx - _outerRadius,
+                y: params.coordSys.cy - _outerRadius,
+                width: _outerRadius * 2,
+                height: _outerRadius * 2
+            };
+            return {
+                type: 'group',
+                children: [
+                    {
+                        type: 'image',
+                        style: imageStyle,
+                        clipPath: {
+                            type: 'sector',
+                            shape: {
+                                cx: params.coordSys.cx,
+                                cy: params.coordSys.cy,
+                                r: _outerRadius,
+                                r0: _innerRadius,
+                                startAngle: 0,
+                                endAngle: -polarEndRadian,
+                                transition: 'endAngle',
+                                enterFrom: { endAngle: 0 }
+                            }
+                        }
+                    },
+                    {
+                        type: 'image',
+                        style: imageStyle,
+                        clipPath: {
+                            type: 'polygon',
+                            shape: {
+                                points: makePointerPoints(params, polarEndRadian)
+                            },
+                            extra: {
+                                polarEndRadian: polarEndRadian,
+                                transition: 'polarEndRadian',
+                                enterFrom: { polarEndRadian: 0 }
+                            },
+                            during: function (apiDuring) {
+                                apiDuring.setShape(
+                                    'points',
+                                    makePointerPoints(params, apiDuring.getExtra('polarEndRadian'))
+                                );
+                            }
+                        }
+                    },
+                    {
+                        type: 'circle',
+                        shape: {
+                            cx: params.coordSys.cx,
+                            cy: params.coordSys.cy,
+                            r: _insidePanelRadius
+                        },
+                        style: {
+                            fill: '#fff',
+                            shadowBlur: 25,
+                            shadowOffsetX: 0,
+                            shadowOffsetY: 0,
+                            shadowColor: 'rgba(76,107,167,0.4)'
+                        }
+                    },
+                    {
+                        type: 'text',
+                        extra: {
+                            valOnRadian: valOnRadian,
+                            transition: 'valOnRadian',
+                            enterFrom: { valOnRadian: 0 }
+                        },
+                        style: {
+                            text: makeText(valOnRadian),
+                            fontSize: 50,
+                            fontWeight: 700,
+                            x: params.coordSys.cx,
+                            y: params.coordSys.cy,
+                            fill: 'rgb(0,50,190)',
+                            align: 'center',
+                            verticalAlign: 'middle',
+                            enterFrom: { opacity: 0 }
+                        },
+                        during: function (apiDuring) {
+                            apiDuring.setStyle(
+                                'text',
+                                makeText(apiDuring.getExtra('valOnRadian'))
+                            );
+                        }
+                    }
+                ]
+            };
+        }
+        function convertToPolarPoint(renderItemParams, radius, radian) {
+            return [
+                Math.cos(radian) * radius + renderItemParams.coordSys.cx,
+                -Math.sin(radian) * radius + renderItemParams.coordSys.cy
+            ];
+        }
+        function makePointerPoints(renderItemParams, polarEndRadian) {
+            return [
+                convertToPolarPoint(renderItemParams, _outerRadius, polarEndRadian),
+                convertToPolarPoint(
+                    renderItemParams,
+                    _outerRadius,
+                    polarEndRadian + Math.PI * 0.03
+                ),
+                convertToPolarPoint(renderItemParams, _pointerInnerRadius, polarEndRadian)
+            ];
+        }
+        function makeText(valOnRadian) {
+            // Validate additive animation calc.
+            if (valOnRadian < -10) {
+                alert('illegal during val: ' + valOnRadian);
+            }
+            return ((valOnRadian / _valOnRadianMax) * 100).toFixed(0) + '%';
+        }
+        memOption = {
+            animationEasing: _animationEasingUpdate,
+            animationDuration: _animationDuration,
+            animationDurationUpdate: _animationDurationUpdate,
+            animationEasingUpdate: _animationEasingUpdate,
+            dataset: {
+                source: [[1, 156]]
+            },
+            tooltip: {},
+            angleAxis: {
+                type: 'value',
+                startAngle: 0,
+                show: false,
+                min: 0,
+                max: _valOnRadianMax
+            },
+            radiusAxis: {
+                type: 'value',
+                show: false
+            },
+            polar: {},
+            series: [
+                {
+                    type: 'custom',
+                    coordinateSystem: 'polar',
+                    renderItem: renderItem
+                }
+            ]
+        };
+        setInterval(function () {
+            var nextSource = [[1, Math.round(Math.random() * _valOnRadianMax)]];
+            memChart.setOption({
+                dataset: {
+                    source: nextSource
+                }
+            });
+        }, 1000);
+
+        if (memOption && typeof memOption === 'object') {
+            memChart.setOption(memOption);
+        }
+
+        window.addEventListener('resize', memChart.resize);
+    </script>
+</body>
+</html>
