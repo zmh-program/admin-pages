@@ -32,4 +32,3 @@ feature videos:
     initGithubRepositoryData("django", "django");
 </script>
 ```
-

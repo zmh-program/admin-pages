@@ -669,6 +669,15 @@ a {
     line-height: 24px;
     opacity: .7;
 }
+.box-content-content {
+    font-size: 25px;
+    line-height: 24px;
+    padding: 29px 15px;
+    opacity: .7;
+}
+.project-boxes.jsListView .project-box-content-header .full-width {
+    width: max-content !important;
+}
 .box-content-subheader:nth-child(2){
     align-self: center;
 }
