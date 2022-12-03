@@ -1,0 +1,349 @@
+:root {
+    --bg:#ebf0f7;
+    --header:#fbf4f6;
+    --text:#2e2e2f;
+    --white:#ffffff;
+    --light-grey:#c4cad3;
+    --tag-1:#ceecfd;
+    --tag-1-text:#2e87ba;
+    --tag-2:#d6ede2;
+    --tag-2-text:#13854e;
+    --tag-3:#ceecfd;
+    --tag-3-text:#2d86ba;
+    --tag-4:#f2dcf5;
+    --tag-4-text:#a734ba;
+    --purple:#7784ee;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    color: var(--text);
+}
+
+.app {
+    background-color: var(--bg);
+    width: 100%;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+.project {
+    padding: 2rem;
+    width: 100%;
+    display: inline-block;
+}
+
+.project-info {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project-participants {
+    display: flex;
+    align-items: center;
+}
+
+.project-participants span, .project-participants__add {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background: var(--purple);
+    border-radius: 100rem;
+    margin: 0 .2rem;
+}
+
+.project-participants__add {
+    background: transparent;
+    border: 1px dashed #969696;
+    font-size: 0;
+    cursor: pointer;
+    position: relative;
+}
+
+.project-participants__add:after {
+    content: '+';
+    font-size: 15px;
+    color: #969696;
+}
+
+.file-container {
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    grid-column-gap: 1.5rem;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.project-column-heading {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-column-heading__title {
+    font-size: 20px;
+}
+
+.project-column-heading__options {
+    background: transparent;
+    color: var(--light-grey);
+    font-size: 18px;
+    border: 0;
+    cursor: pointer;
+}
+
+.file-card {
+    cursor: pointer;
+    background-color: var(--white);
+    padding: 1rem;
+    border-radius: 8px;
+    width: 25%;
+    min-width: 260px;
+    max-width: 350px;
+    box-shadow: rgba(99, 99, 99, 0.1) 0 2px 8px 0;
+    margin-bottom: 1rem;
+    border: 3px dashed transparent;
+}
+
+.file-card:hover {
+    box-shadow: rgba(99, 99, 99, 0.3) 0 2px 8px 0;
+    border-color: rgba(162, 179, 207, 0.2) !important;
+}
+
+.file-card p {
+    font-size: 15px;
+    margin: 1.2rem 0;
+}
+
+.task__tag {
+    border-radius: 100px;
+    padding: 2px 13px;
+    font-size: 12px;
+}
+
+.task__tag--copyright {
+    color: var(--tag-4-text);
+    background-color: var(--tag-4);
+}
+
+.task__tag--application {
+    color: var(--tag-3-text);
+    background-color: var(--tag-3);
+}
+
+.task__tag--admin {
+    color: var(--tag-2-text);
+    background-color: var(--tag-2);
+}
+
+.file__tags {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: capitalize;
+}
+
+.task__options {
+    background: transparent;
+    border: 0;
+    color: var(--light-grey);
+    font-size: 17px;
+}
+
+.file__stats {
+    position: relative;
+    width: 100%;
+    color: var(--light-grey);
+    font-size: 12px;
+}
+
+.file__stats span:not(:last-of-type) {
+    margin-right: 1rem;
+}
+
+.file__stats svg {
+    margin-right: 5px;
+}
+
+.task__owner {
+    width: 25px;
+    height: 25px;
+    border-radius: 100rem;
+    background: var(--purple);
+    position: absolute;
+    display: inline-block;
+    right: 0;
+    bottom: 0;
+}
+
+/* this is a recreation of twitter search in css */
+.form {
+    --input-text-color: black;
+    --input-bg-color: #f5f5f5;
+    --focus-input-bg-color: transparent;
+    --text-color: #949faa;
+    --active-color: #1b9bee;
+    --width-of-input: max(45%, 250px);
+    --inline-padding-of-input: 1.2em;
+    --gap: 0.9rem;
+    margin-bottom: 1.9rem;
+    width: 100%;
+}
+/* form style */
+.form {
+    font-size: 0.9rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    width: var(--width-of-input);
+    position: relative;
+    isolation: isolate;
+}
+/* a fancy bg for showing background and border when focus. */
+.fancy-bg {
+    position: absolute;
+    width: 100%;
+    inset: 0;
+    background: var(--input-bg-color);
+    border-radius: 30px;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+}
+/* label styling */
+label {
+    width: 100%;
+    padding: 0.8em;
+    height: 40px;
+    padding-inline: var(--inline-padding-of-input);
+    display: flex;
+    align-items: center;
+}
+
+.search,.close-btn {
+    position: absolute;
+}
+/* styling search-icon */
+.search {
+    fill: var(--text-color);
+    left: var(--inline-padding-of-input);
+}
+/* svg -- size */
+svg {
+    width: 17px;
+    display: block;
+}
+/* styling of close button */
+.close-btn {
+    border: none;
+    right: var(--inline-padding-of-input);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    padding: 0.1em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--active-color);
+    opacity: 0;
+    visibility: hidden;
+}
+/* styling of input */
+.input {
+    color: var(--input-text-color);
+    width: 100%;
+    margin-inline: min(2em,calc(var(--inline-padding-of-input) + var(--gap)));
+    background: none;
+    border: none;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.input::placeholder {
+    color: var(--text-color)
+}
+/* input background change in focus */
+.input:focus ~ .fancy-bg {
+    border: 1px solid var(--active-color);
+    background: var(--focus-input-bg-color);
+}
+/* search icon color change in focus */
+.input:focus ~ .search {
+    fill: var(--active-color);
+}
+/* showing close button when typing */
+.input:valid ~ .close-btn {
+    opacity: 1;
+    visibility: visible;
+}
+/* this is for the default background in input,when selecting autofill options -- you can remove this code if you do not want to override the browser style.  */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
+    -webkit-transition-delay: 9999s;
+}
+
+@media only screen and (max-width: 1300px) {
+    .project {
+        max-width: 100%;
+    }
+    .task-details {
+        width: 100%;
+        display: flex;
+    }
+    .tag-progress,
+    .task-activity {
+        flex-basis: 50%;
+        background: var(--white);
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 1rem;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .file-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .file-container {
+        grid-template-columns: 1fr;
+    }
+    .task-details {
+        flex-wrap: wrap;
+        padding: 3rem 1rem;
+    }
+    .tag-progress,
+    .task-activity {
+        flex-basis: 100%;
+    }
+    h1 {
+        font-size: 25px;
+    }
+}
