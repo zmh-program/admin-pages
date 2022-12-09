@@ -2,7 +2,7 @@
 
 Front-end administrator interface, using native html/css/js
 
-#### Preview Online [Admin Pages](https://https://zmh-program.github.io/admin-pages/)
+#### Preview Online [Admin Pages](https://zmh-program.github.io/admin-pages/)
 
 #### ScreenShot
 
