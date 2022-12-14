@@ -4,6 +4,7 @@ Front-end administrator interface, using native html/css/js
 
 ### Preview Online [Admin Pages](https://zmh-program.github.io/admin-pages/)
 
+##### This Admin Page Project is a subproject of [Zh-Website](https://github.com/zmh-program/Zh-Website/) (my repo)
 ## ScreenShot
 ![dashboard](screenshots/dashboard-dark.PNG)
 ![dashboard-dark](screenshots/dashboard.png)
