@@ -55,4 +55,26 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('.messages-close').addEventListener('click', function() {
         document.querySelector('.messages-section').classList.remove('show');
     });
+
+    function addBoxListener(func, type = 'click') {
+        listView.addEventListener(type, func)
+        gridView.addEventListener(type, func)
+    }
 });
+
+function get_week(_today){
+    if (_today < 1){
+        throw RangeError();
+    }
+    let week_content = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    let today = (_today || new Date().getDay());
+    let week_data = [];
+    for (let i = 7; i > 0; i--) {
+        let day = today - i;
+        if (day < 0){
+            day = 7 + day;
+        }
+        week_data.push(week_content[day]);
+    }
+    return week_data;
+}

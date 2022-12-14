@@ -3,22 +3,6 @@ const site_req_chart = echarts.init(req_site_dom, null, {
     renderer: 'canvas',
     useDirtyRect: false
 });
-function get_7days(_today){
-    if (_today < 1){
-        throw RangeError();
-    }
-    let week_content = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    let today = (_today || new Date().getDay())
-    let week_data = [];
-    for (let i = 7; i > 0; i--) {
-        let day = today - i;
-        if (day < 0){
-            day = 7 + day;
-        }
-        week_data.push(week_content[day]);
-    }
-    return week_data;
-}
 
 const site_req_option = {
     tooltip: {
@@ -43,7 +27,7 @@ const site_req_option = {
         {
             type: 'category',
             boundaryGap: false,
-            data: get_7days(),
+            data: get_week(),
         }
     ],
     yAxis: [

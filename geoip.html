@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="">
+<head>
+    <meta charset="UTF-8">
+    <title>Request Country Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.8" />
+    <link href="static/css/index.css" rel="stylesheet">
+    <link href="static/css/geoip.css" rel="stylesheet">
+    <link href="https://lib.baomitu.com/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://lib.baomitu.com/font-awesome/6.2.1/css/all.css" rel="stylesheet">
+</head>
+<body>
+<div class="app-container">
+    <div class="app-header">
+        <div class="app-header-left">
+            <span class="app-icon"></span>
+            <p class="app-name">Zh-Website</p>
+            <div class="search-wrapper">
+                <label>
+                    <input class="search-input" type="text" placeholder="Search">
+                </label>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search" viewBox="0 0 24 24">
+                    <defs></defs>
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="M21 21l-4.35-4.35"></path>
+                </svg>
+            </div>
+        </div>
+        <div class="app-header-right">
+            <button class="mode-switch" title="Switch Theme">
+                <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
+                    <defs></defs>
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                </svg>
+            </button>
+            <button class="notification-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg>
+            </button>
+            <button class="profile-btn">
+                <img src="static/images/zmh-program.png" alt=""/>
+                <span>zmh-program</span>
+            </button>
+        </div>
+        <button class="messages-btn">
+            <i class='bx bxs-bar-chart-alt-2'></i>
+        </button>
+    </div>
+    <div class="app-content">
+        <div class="app-sidebar">
+            <a href="index.html" class="app-sidebar-link"><i class='bx bx-line-chart'></i></a>
+            <a href="" class="app-sidebar-link active"><i class='bx bx-analyse'></i></a>
+            <a href="" class="app-sidebar-link"><i class='bx bx-calendar-alt'></i></a>
+            <a href="" class="app-sidebar-link"><i class='bx bx-cog'></i></a>
+        </div>
+        <div class="projects-section">
+            <div class="projects-section-header">
+                <p>Website Users</p>
+                <p class="right"></p>
+            </div>
+            <div class="projects-section-line">
+                <div class="projects-status">
+                    <div class="item-status">
+                        <span class="status-number" id="registered">Unknown</span>
+                        <span class="status-type">Registered</span>
+                    </div>
+                    <div class="item-status">
+                        <span class="status-number" id="actives">Unknown</span>
+                        <span class="status-type">Active<span class="help-active"> <i class="fa-solid fa-circle-question"></i></span></span>
+                    </div>
+                    <div class="item-status">
+                        <span class="status-number" id="admin">Unknown</span>
+                        <span class="status-type">Admin</span>
+                    </div>
+                </div>
+                <div class="view-actions">
+                    <button class="view-btn list-view" title="List View">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
+                            <line x1="8" y1="6" x2="21" y2="6" />
+                            <line x1="8" y1="12" x2="21" y2="12" />
+                            <line x1="8" y1="18" x2="21" y2="18" />
+                            <line x1="3" y1="6" x2="3.01" y2="6" />
+                            <line x1="3" y1="12" x2="3.01" y2="12" />
+                            <line x1="3" y1="18" x2="3.01" y2="18" /></svg>
+                    </button>
+                    <button class="view-btn grid-view active" title="Grid View">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid">
+                            <rect x="3" y="3" width="7" height="7" />
+                            <rect x="14" y="3" width="7" height="7" />
+                            <rect x="14" y="14" width="7" height="7" />
+                            <rect x="3" y="14" width="7" height="7" /></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="project-boxes without-scrollbar jsGridView">
+                <div class="project-box-wrapper" id="cpu">
+                    <div class="project-box" style="background-color: #fee4cb;">
+                        <div class="project-box-header">
+                            <span>Regional Distribution</span>
+                            <div class="more-wrapper"><button class="project-btn-more"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1" /><circle cx="12" cy="5" r="1" /><circle cx="12" cy="19" r="1" /></svg></button></div>
+                        </div>
+                        <div class="project-box-content-header">
+                            <p class="box-content-header"><i class="fa-solid fa-earth-americas"></i> Regional Distribution</p>
+                            <p class="box-content-subheader">Regional Distribution of Users</p>
+                        </div>
+                        <div class="chart-container" id="nightingale-chart"></div>
+                    </div>
+                </div>
+                <div class="project-box-wrapper" id="ram">
+                    <div class="project-box" style="background-color: #dbf6fd;">
+                        <div class="project-box-header">
+                            <span>Recent Registrations</span>
+                            <div class="more-wrapper"><button class="project-btn-more"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1" /><circle cx="12" cy="5" r="1" /><circle cx="12" cy="19" r="1" /></svg></button></div>
+                        </div>
+                        <div class="project-box-content-header">
+                            <p class="box-content-header"><i class="fa-solid fa-chart-column"></i> Recent Registrations</p>
+                            <p class="box-content-subheader">Recent 7 days Registrations</p>
+                        </div>
+                        <div class="chart-container" id="bar-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="messages-section without-scrollbar">
+            <button class="messages-close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="15" y1="9" x2="9" y2="15" />
+                    <line x1="9" y1="9" x2="15" y2="15" /></svg>
+            </button>
+            <div class="projects-section-header">
+                <p>Website Requests</p>
+            </div>
+            <div class="projects-section-line">
+                <div class="projects-status" style="display: flex;align-items: center;width: 100%;" onclick="window.location.href='https://github.com/zmh-program/Zh-Website/'">
+                    <div class="item-status" style="margin: 0 auto;align-items: center;">
+                        <span class="status-number" id="requests" style="font-size: 35px;color: green;">Unknown</span>
+                        <span class="status-type">7 Days Requests</span>
+                    </div>
+                </div>
+            </div>
+            <div class="messages">
+                <div class="message-box">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <div class="name">Website Request (7 days)</div>
+                            <div class="star-checkbox">
+                                <input type="checkbox" id="star-2">
+                                <label for="star-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="chart-container" id="country-chart"></div>
+                    </div>
+                </div>
+                <div class="message-box">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <div class="name">Site Requests (7 Days)</div>
+                            <div class="star-checkbox">
+                                <input type="checkbox" id="star-3">
+                                <label for="star-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                                </label>
+                            </div>
+                        </div>
+                        <p class="message-line">
+
+                        </p>
+                        <div class="chart-container" id="round-chart"></div>
+                        <p class="message-line right">
+                            7 Days of Site Requests
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+<script src="static/js/index.js"></script>
+<script src="static/js/geoip.js"></script>
+<script>
+    initializeRequestCharts("static/data/world.json", "static/data/data.json");
+</script>
+</body>
+</html>

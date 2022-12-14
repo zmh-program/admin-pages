@@ -276,10 +276,11 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
 }
 .app-sidebar-link i{
     text-decoration: none;
-    font-size: 25px;
+    font-size: 30px;
     text-underline: none;
 }
 .app-sidebar-link:hover {
@@ -339,18 +340,6 @@ a {
     display: flex;
     flex-direction: column;
     margin-right: 16px;
-}
-
-.item-status:not(:last-child) .status-type:after {
-    content: '';
-    position: absolute;
-    right: 8px;
-    top: 50%;
-    transform: translatey(-50%);
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    border: 1px solid var(--secondary-color);
 }
 
 .status-number {
