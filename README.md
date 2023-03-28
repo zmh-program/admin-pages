@@ -3,8 +3,8 @@
 ### 🥗
 # [Admin Pages](https://admin-pages.deeptrain.net)
 
-### Frontend administrator interface, using native html/css/js
-### 一个原生前端管理员界面
+#### Frontend administrator interface, using native html/css/js
+#### 一个原生前端管理员界面
 
 </div>
 
