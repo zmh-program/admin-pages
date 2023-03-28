@@ -1,11 +1,14 @@
-# admin-pages
+<div align="center">
 
-Front-end administrator interface, using native html/css/js
+### 🥗
+# [Admin Pages](https://admin-pages.deeptrain.net)
 
-### Preview Online [Admin Pages](https://zmh-program.github.io/admin-pages/)
+### Frontend administrator interface, using native html/css/js
+### 一个原生前端管理员界面
 
-##### This Admin Page Project is a subproject of [Zh-Website](https://github.com/zmh-program/Zh-Website/) (my repo)
-## ScreenShot
+</div>
+
+## ScreenShot | 预览
 ![dashboard](screenshots/dashboard-dark.PNG)
 ![dashboard-dark](screenshots/dashboard.png)
 ![dashboard-listview](screenshots/dashboard-listview.png)
@@ -14,7 +17,7 @@ Front-end administrator interface, using native html/css/js
 ![geoip-dark](screenshots/geoip-dark.PNG)
 ![geoip-listview](screenshots/geoip-listview.PNG)
 
-## api
+## API | 接口
 
 ###### index.html / line: 372
 ```html
